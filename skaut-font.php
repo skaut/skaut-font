@@ -13,6 +13,6 @@
   */
 
 function lynt_skauting_styles() {
-    wp_enqueue_style( 'skauting-style', '/style.css' );
+    wp_enqueue_style( 'skauting-style', plugins_url( '/style.css', __FILE__ ) );
 }
 add_action( 'wp_enqueue_scripts', 'lynt_skauting_styles' );
