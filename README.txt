@@ -1,0 +1,39 @@
+﻿=== Skautské fonty ===
+Contributors: skaut, kalich5
+Tags: skaut, multisite, plugin, font 
+Requires at least: 4.0
+Tested up to: 4.8
+Stable tag: 1.0
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+Implementace skautských písem do WordPress
+
+== Description ==
+
+PLugin načítá písma z https://cdn.skauting.cz/, kde jsou centrálně aktualizovaná.
+
+**Jsme na GitHabu**
+
+https://github.com/skaut/skaut-font
+
+== Installation ==
+
+Instalace je jednoduchá.
+
+1. Stáhnout si plugin a aktivovat
+
+== Frequently Asked Questions ==
+
+**podpora pluginu**
+
+Oficiální podpora je na: http://dobryweb.skauting.cz/
+
+**Jsme na GitHabu**
+
+https://github.com/skaut/skaut-font
+
+== Changelog ==
+
+= 1.0 =
+- první verze s implementací skautských fontů
