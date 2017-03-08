@@ -99,3 +99,7 @@ p {
     font-weight: 400 !important;
     font-style: normal;
 }
+
+site-description {
+    font-family: themix, sans-serif !important;
+}
