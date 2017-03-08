@@ -22,7 +22,9 @@ https://github.com/skaut/skaut-font
 
 Instalace je jednoduchá.
 
-1. Stáhnout si plugin a aktivovat
+1. Vyhledat plugin jako "Skautské fonty"
+2. Nainstalovat a aktivovat
+3. Na webu se budou zobrazovat jen skautské fonty
 
 == Frequently Asked Questions ==
 
