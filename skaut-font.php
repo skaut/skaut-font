@@ -4,7 +4,7 @@
  * Plugin Name:       Skautské fonty
  * Plugin URI:        https://wordpress.org/plugins/skaut-font
  * Description:       Tento plugin přidává na web skautské fonty SKAUT Bold a TheMix
- * Version:           1.0
+ * Version:           1.0.1
  * Author:            Junák - český skaut, Michal Janata
  * Author URI:        https://dobryweb.skauting.cz/
  * License:           GPL-2.0+
