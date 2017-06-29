@@ -15,8 +15,7 @@ PLugin načítá písma z https://cdn.skauting.cz/, kde jsou centrálně aktuali
 Nadpisy h1-h6 jsou písmem SKAUT Bold, ostatní text je v TheMix.
 
 **Jsme na GitHabu**
-
-https://github.com/skaut/skaut-font
+[https://github.com/skaut/skaut-font](https://github.com/skaut/skaut-font)
 
 == Installation ==
 
@@ -30,11 +29,11 @@ Instalace je jednoduchá.
 
 **podpora pluginu**
 
-Oficiální podpora je na: http://dobryweb.skauting.cz/
+Oficiální podpora je na [http://dobryweb.skauting.cz/](http://dobryweb.skauting.cz/)
 
 **Jsme na GitHabu**
 
-https://github.com/skaut/skaut-font
+[https://github.com/skaut/skaut-font](https://github.com/skaut/skaut-font)
 
 == Changelog ==
 
