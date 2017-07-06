@@ -10,9 +10,133 @@
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       skaut-font
-  */
+ */
 
-function lynt_skauting_styles() {
-    wp_enqueue_style( 'skauting-style', plugins_url( '/style.css', __FILE__ ) );
+namespace Skautfont;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
-add_action( 'wp_enqueue_scripts', 'lynt_skauting_styles', 11 );
+
+define( 'SKAUTFONT_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
+define( 'SKAUTFONT_PATH', plugin_dir_path( __FILE__ ) );
+define( 'SKAUTFONT_URL', plugin_dir_url( __FILE__ ) );
+define( 'SKAUTFONT_NAME', 'skaut-font' );
+define( 'SKAUTFONT_VERSION', '1.0.1' );
+
+require SKAUTFONT_PATH . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+
+class Skautfont {
+
+	public function __construct() {
+		$this->initHooks();
+
+		// if incompatible version of WP / PHP or deactivating plugin right now => don´t init
+		if ( ! $this->isCompatibleVersionOfWp() ||
+		     ! $this->isCompatibleVersionOfPhp() ||
+		     ( isset( $_GET['action'], $_GET['plugin'] ) &&
+		       'deactivate' == $_GET['action'] &&
+		       SKAUTFONT_PLUGIN_BASENAME == $_GET['plugin'] )
+		) {
+			return;
+		}
+		$this->init();
+	}
+
+	protected function initHooks() {
+		add_action( 'admin_init', [ $this, 'checkVersionAndPossiblyDeactivatePlugin' ] );
+
+		register_activation_hook( __FILE__, [ $this, 'activation' ] );
+		register_deactivation_hook( __FILE__, [ $this, 'deactivation' ] );
+		register_uninstall_hook( __FILE__, [ __CLASS__, 'uninstall' ] );
+	}
+
+	protected function init() {
+		$frontend = new Frontend( [
+			'themix'    => __( 'TheMix', 'skaut-font' ),
+			'skautbold' => __( 'SKAUT Bold', 'skaut-font' )
+		], [
+			'body'      => __( 'Výchozí', 'skaut-font' ),
+			'titles'    => __( 'Nadpisy', 'skaut-font' ),
+			'site-desc' => __( 'Popis webu', 'skaut-font' )
+		] );
+
+		if ( is_admin() ) {
+			( new Admin( $frontend ) );
+		}
+	}
+
+	protected function isCompatibleVersionOfWp() {
+		if ( isset( $GLOBALS['wp_version'] ) && version_compare( $GLOBALS['wp_version'], '4.8', '>=' ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	protected function isCompatibleVersionOfPhp() {
+		if ( version_compare( PHP_VERSION, '7.0', '>=' ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public function activation() {
+		if ( ! $this->isCompatibleVersionOfWp() ) {
+			deactivate_plugins( SKAUTFONT_PLUGIN_BASENAME );
+			wp_die( __( 'Plugin skaut-font vyžaduje verzi WordPress 4.8 nebo vyšší!', 'skaut-font' ) );
+		}
+
+		if ( ! $this->isCompatibleVersionOfPhp() ) {
+			deactivate_plugins( SKAUTFONT_PLUGIN_BASENAME );
+			wp_die( __( 'Plugin skaut-font vyžaduje verzi PHP 7.0 nebo vyšší!', 'skautis-integration' ) );
+		}
+	}
+
+	public function deactivation() {
+		return true;
+	}
+
+	public static function uninstall() {
+		global $wpdb;
+		$options = $wpdb->get_results( "SELECT option_name FROM $wpdb->options WHERE option_name LIKE 'skaut-font_%'" );
+		foreach ( $options as $option ) {
+			delete_option( $option->option_name );
+		}
+
+		return true;
+	}
+
+	public function checkVersionAndPossiblyDeactivatePlugin() {
+		if ( ! $this->isCompatibleVersionOfWp() ) {
+			if ( is_plugin_active( SKAUTFONT_PLUGIN_BASENAME ) ) {
+
+				deactivate_plugins( SKAUTFONT_PLUGIN_BASENAME );
+
+				Helpers::showAdminNotice( esc_html__( 'Plugin skaut-font vyžaduje verzi WordPress 4.8 nebo vyšší!', 'skaut-font' ), 'warning' );
+
+				if ( isset( $_GET['activate'] ) ) {
+					unset( $_GET['activate'] );
+				}
+			}
+		}
+
+		if ( ! $this->isCompatibleVersionOfPhp() ) {
+			if ( is_plugin_active( SKAUTFONT_PLUGIN_BASENAME ) ) {
+
+				deactivate_plugins( SKAUTFONT_PLUGIN_BASENAME );
+
+				Helpers::showAdminNotice( esc_html__( 'Plugin skaut-font vyžaduje verzi PHP 7.0 nebo vyšší!', 'skaut-font' ), 'warning' );
+
+				if ( isset( $_GET['activate'] ) ) {
+					unset( $_GET['activate'] );
+				}
+			}
+		}
+	}
+
+}
+
+global $skautfont;
+$skautfont = new Skautfont();
