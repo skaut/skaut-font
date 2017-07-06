@@ -40,7 +40,7 @@ p {
 		} else if ( $styleBody === 'skautbold' ) {
 			return '
 body {
-    font-family: themix, sans-serif !important;
+    font-family: skautbold, sans-serif !important;
 }
 			';
 		}
