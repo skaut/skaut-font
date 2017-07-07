@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name:       Skautské fonty
+ * Plugin Name:       Skaut font
  * Plugin URI:        https://github.com/skaut/skaut-font/
  * Description:       Tento plugin přidává na web skautské fonty SKAUT Bold a TheMix
  * Version:           1.0
