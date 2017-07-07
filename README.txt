@@ -38,8 +38,6 @@ Oficiální podpora je na [http://dobryweb.skauting.cz/](http://dobryweb.skautin
 
 == Changelog ==
 
-= 1.0.1
-- popis webu (úprava do TreMix)
-
 = 1.0 =
-- první verze s implementací skautských fontů
+* první verze s implementací skautských fontů
+* možnosti nasvení pluginu
