@@ -23,7 +23,8 @@ Instalace je jednoduchá.
 
 1. Vyhledat plugin jako "Skautské fonty"
 2. Nainstalovat a aktivovat
-3. Na webu se budou zobrazovat jen skautské fonty
+3. V položce menu "Vzhled" přibude nastavení skautských fontů kde si vše nastavíte
+4. Na webu se budou zobrazovat jen skautské fonty
 
 == Frequently Asked Questions ==
 
