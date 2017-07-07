@@ -1,7 +1,7 @@
 ﻿=== Skautské fonty ===
-Contributors: skaut, kalich5
+Contributors: davidulus, skaut, kalich5
 Tags: skaut, multisite, plugin, font 
-Requires at least: 4.0
+Requires at least: 4.8
 Tested up to: 4.8
 Stable tag: 1.0.1
 License: GPLv2 or later
