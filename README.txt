@@ -1,4 +1,4 @@
-﻿=== Skaut font ===
+=== Skautské fonty ===
 Contributors: davidulus, skaut, kalich5
 Tags: skaut, multisite, plugin, font 
 Requires at least: 4.8
