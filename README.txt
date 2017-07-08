@@ -11,8 +11,8 @@ Implementace skautských písem do WordPress
 
 == Description ==
 
-PLugin načítá písma z https://cdn.skauting.cz/, kde jsou centrálně aktualizovaná. Vlastní stylování, je ale přímo součástí pluginu.
-Nadpisy h1-h6 jsou písmem SKAUT Bold, ostatní text je v TheMix.
+Plugin načítá písma z https://cdn.skauting.cz/, kde jsou centrálně aktualizovaná. Plugin obsahuje nastavení, takže si můžete sami vybrat kde se jaké písmo bude zobrazovat. Je dobré se řídit tí že...
+Název webu, nadpisy h1-h6 jsou písmem SKAUT Bold, ostatní text je v TheMix.
 
 **Jsme na GitHabu**
 [https://github.com/skaut/skaut-font](https://github.com/skaut/skaut-font)
