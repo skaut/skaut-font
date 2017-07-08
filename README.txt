@@ -38,6 +38,6 @@ Oficiální podpora je na [http://dobryweb.skauting.cz/](http://dobryweb.skautin
 
 == Changelog ==
 
-= 1.0 =
+= 1.1 =
 * první verze s implementací skautských fontů
 * možnosti nasvení pluginu
