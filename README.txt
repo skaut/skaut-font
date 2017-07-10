@@ -11,6 +11,10 @@ Implementace skautských písem do WordPress
 
 == Description ==
 
+<h2> Minimální požadavky</h2>
+- WordPress 4.8 a vyšší
+- PHP 7.0 a vyšší
+
 Plugin načítá písma z https://cdn.skauting.cz/, kde jsou centrálně aktualizovaná. Plugin obsahuje nastavení, takže si můžete sami vybrat kde se jaké písmo bude zobrazovat. Je dobré se řídit tí že...
 Název webu, nadpisy h1-h6 jsou písmem SKAUT Bold, ostatní text je v TheMix.
 
