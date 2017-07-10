@@ -83,13 +83,15 @@ h6 {
 		$styleSiteDesc = get_option( SKAUTFONT_NAME . '_style_site-desc' );
 		if ( $styleSiteDesc === 'themix' ) {
 			return '
-#site-description {
+#site-description,
+.site-description {
     font-family: themix, sans-serif !important;
 }
 		';
 		} else if ( $styleSiteDesc === 'skautbold' ) {
 			return '
-#site-description {
+#site-description,
+.site-description {
     font-family: skautbold, sans-serif !important;
 }
 		';
