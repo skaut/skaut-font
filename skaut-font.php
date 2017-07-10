@@ -92,6 +92,18 @@ class Skautfont {
 			deactivate_plugins( SKAUTFONT_PLUGIN_BASENAME );
 			wp_die( __( 'Plugin skaut-font vyžaduje verzi PHP 7.0 nebo vyšší!', 'skautis-integration' ) );
 		}
+
+		if ( ! get_option( SKAUTFONT_NAME . '_style_body' ) ) {
+			add_option( SKAUTFONT_NAME . '_style_body', 'themix' );
+		}
+
+		if ( ! get_option( SKAUTFONT_NAME . '_style_titles' ) ) {
+			add_option( SKAUTFONT_NAME . '_style_titles', 'skautbold' );
+		}
+
+		if ( ! get_option( SKAUTFONT_NAME . '_style_site-desc' ) ) {
+			add_option( SKAUTFONT_NAME . '_style_site-desc', 'themix' );
+		}
 	}
 
 	public function deactivation() {
@@ -100,7 +112,11 @@ class Skautfont {
 
 	public static function uninstall() {
 		global $wpdb;
-		$options = $wpdb->get_results( "SELECT option_name FROM $wpdb->options WHERE option_name LIKE 'skaut-font_%'" );
+		$options = $wpdb->get_results( $wpdb->prepare( "
+SELECT `option_name`
+FROM $wpdb->options
+WHERE `option_name` LIKE %s
+", SKAUTFONT_NAME . '_%' ) );
 		foreach ( $options as $option ) {
 			delete_option( $option->option_name );
 		}

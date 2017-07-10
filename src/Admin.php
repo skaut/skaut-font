@@ -21,6 +21,14 @@ final class Admin {
 
 		add_action( 'admin_menu', [ $this, 'setupSettingPage' ], 5 );
 		add_action( 'admin_init', [ $this, 'setupSettingFields' ] );
+		add_action( 'activated_plugin', [ Admin::class, 'redirectToPluginSettingPageAfterActivation' ] );
+	}
+
+	public static function redirectToPluginSettingPageAfterActivation( string $pluginName ) {
+		if ( $pluginName === SKAUTFONT_NAME . '/' . SKAUTFONT_NAME . '.php' ) {
+			wp_safe_redirect( admin_url( 'themes.php?page=' . SKAUTFONT_NAME ), 302 );
+			exit;
+		}
 	}
 
 	public function addSettingsLinkToPluginsTable( array $links = [] ): array {
