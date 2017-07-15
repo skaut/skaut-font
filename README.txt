@@ -40,6 +40,10 @@ Oficiální podpora je na [http://dobryweb.skauting.cz/](http://dobryweb.skautin
 
 [https://github.com/skaut/skaut-font](https://github.com/skaut/skaut-font)
 
+== Screenshots ==
+
+1. Nastavení pluginu naleznete v záložce Vzhled. Můžete si nastavovat písma pro základní styly. Pokud zakliknete "Neměnit", zůstane font nastavený přímo v šabloně.
+
 == Changelog ==
 
 = 1.2 =
