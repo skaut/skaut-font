@@ -4,7 +4,7 @@
  * Plugin Name:       Skautské fonty
  * Plugin URI:        https://github.com/skaut/skaut-font/
  * Description:       Tento plugin přidává na web skautské fonty SKAUT Bold a TheMix
- * Version:           1.2
+ * Version:           1.2.1
  * Author:            David Odehnal
  * Author URI:        https://davidodehnal.cz/
  * License:           GPL-2.0+
@@ -22,9 +22,7 @@ define( 'SKAUTFONT_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 define( 'SKAUTFONT_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SKAUTFONT_URL', plugin_dir_url( __FILE__ ) );
 define( 'SKAUTFONT_NAME', 'skaut-font' );
-define( 'SKAUTFONT_VERSION', '1.0.1' );
-
-require SKAUTFONT_PATH . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+define( 'SKAUTFONT_VERSION', '1.2.1' );
 
 class Skautfont {
 
@@ -40,6 +38,9 @@ class Skautfont {
 		) {
 			return;
 		}
+
+		require SKAUTFONT_PATH . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+
 		$this->init();
 	}
 
