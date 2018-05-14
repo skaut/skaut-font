@@ -4,7 +4,7 @@
  * Plugin Name:       Skautské fonty
  * Plugin URI:        https://github.com/skaut/skaut-font/
  * Description:       Tento plugin přidává na web skautské fonty SKAUT Bold a TheMix
- * Version:           1.2.1
+ * Version:           1.2.2
  * Author:            David Odehnal
  * Author URI:        https://davidodehnal.cz/
  * License:           GPL-2.0+
@@ -22,7 +22,7 @@ define( 'SKAUTFONT_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 define( 'SKAUTFONT_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SKAUTFONT_URL', plugin_dir_url( __FILE__ ) );
 define( 'SKAUTFONT_NAME', 'skaut-font' );
-define( 'SKAUTFONT_VERSION', '1.2.1' );
+define( 'SKAUTFONT_VERSION', '1.2.2' );
 
 class Skautfont {
 
@@ -68,7 +68,7 @@ class Skautfont {
 	}
 
 	protected function isCompatibleVersionOfWp() {
-		if ( isset( $GLOBALS['wp_version'] ) && version_compare( $GLOBALS['wp_version'], '4.8', '>=' ) ) {
+		if ( isset( $GLOBALS['wp_version'] ) && version_compare( $GLOBALS['wp_version'], '4.9.6', '>=' ) ) {
 			return true;
 		}
 
@@ -86,7 +86,7 @@ class Skautfont {
 	public function activation() {
 		if ( ! $this->isCompatibleVersionOfWp() ) {
 			deactivate_plugins( SKAUTFONT_PLUGIN_BASENAME );
-			wp_die( __( 'Plugin skaut-font vyžaduje verzi WordPress 4.8 nebo vyšší!', 'skaut-font' ) );
+			wp_die( __( 'Plugin skaut-font vyžaduje verzi WordPress 4.9.6 nebo vyšší!', 'skaut-font' ) );
 		}
 
 		if ( ! $this->isCompatibleVersionOfPhp() ) {
