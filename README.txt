@@ -1,7 +1,7 @@
 === Skautské fonty ===
 Contributors: davidulus, skaut, kalich5
 Tags: skaut, multisite, plugin, font 
-Requires at least: 4.8
+Requires at least: 4.9.6
 Tested up to: 5.0
 Requires PHP: 7.0
 Stable tag: 1.2.1
@@ -13,7 +13,7 @@ Implementace skautských písem do WordPress
 == Description ==
 
 <h2> Minimální požadavky</h2>
-- WordPress 4.8 a vyšší
+- WordPress 4.9.6 a vyšší
 - PHP 7.0 a vyšší
 
 Plugin načítá písma z https://cdn.skauting.cz/, kde jsou centrálně aktualizovaná. Plugin obsahuje nastavení, takže si můžete sami vybrat kde se jaké písmo bude zobrazovat. Je dobré se řídit tí že...
@@ -46,6 +46,10 @@ Oficiální podpora je na [http://dobryweb.skauting.cz/](http://dobryweb.skautin
 1. Nastavení pluginu naleznete v záložce Vzhled. Můžete si nastavovat písma pro základní styly. Pokud zakliknete "Neměnit", zůstane font nastavený přímo v šabloně.
 
 == Changelog ==
+
+= 1.2.2
+* nejnižší požadovaná verze změněna na 4.9.6
+
 = 1.2.1 =
 * doplnění popisu pluginu
 
