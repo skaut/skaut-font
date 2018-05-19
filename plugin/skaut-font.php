@@ -91,7 +91,7 @@ class Skautfont {
 
 		if ( ! $this->isCompatibleVersionOfPhp() ) {
 			deactivate_plugins( SKAUTFONT_PLUGIN_BASENAME );
-			wp_die( __( 'Plugin skaut-font vyžaduje verzi PHP 7.0 nebo vyšší!', 'skautis-integration' ) );
+			wp_die( __( 'Plugin skaut-font vyžaduje verzi PHP 7.0 nebo vyšší!', 'skaut-font' ) );
 		}
 
 		if ( ! get_option( SKAUTFONT_NAME . '_style_body' ) ) {
