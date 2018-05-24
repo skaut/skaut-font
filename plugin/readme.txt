@@ -4,7 +4,7 @@ Tags: skaut, multisite, plugin, font
 Requires at least: 4.9.6
 Tested up to: 5.0
 Requires PHP: 7.0
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
