@@ -47,7 +47,7 @@ Oficiální podpora je na [http://dobryweb.skauting.cz/](http://dobryweb.skautin
 
 == Changelog ==
 
-= 1.2.2
+= 1.2.2 =
 * nejnižší požadovaná verze změněna na 4.9.6
 
 = 1.2.1 =
