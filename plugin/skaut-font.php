@@ -5,8 +5,8 @@
  * Plugin URI:        https://github.com/skaut/skaut-font/
  * Description:       Tento plugin přidává na web skautské fonty SKAUT Bold a TheMix
  * Version:           1.2.2
- * Author:            David Odehnal
- * Author URI:        https://davidodehnal.cz/
+ * Author:            Junák - český skaut
+ * Author URI:        https://github.com/skaut
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       skaut-font
