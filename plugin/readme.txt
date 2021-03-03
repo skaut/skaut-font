@@ -2,7 +2,7 @@
 Contributors: davidulus, skaut, kalich5
 Tags: skaut, multisite, plugin, font 
 Requires at least: 5.0
-Tested up to: 5.6
+Tested up to: 5.7
 Requires PHP: 7.0
 Stable tag: 1.2.2
 License: GPLv3 or later
