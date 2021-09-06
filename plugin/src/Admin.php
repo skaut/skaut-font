@@ -42,8 +42,8 @@ final class Admin {
 	public function setupSettingPage() {
 		add_submenu_page(
 			'themes.php',
-			__( 'Skautské fonty', 'skaut-font' ),
-			__( 'Skautské fonty', 'skaut-font' ),
+			__( 'Scout fonts', 'skaut-font' ),
+			__( 'Scout fonts', 'skaut-font' ),
 			Helpers::getSkautfontManagerCapability(),
 			SKAUTFONT_NAME,
 			[ $this, 'printSettingPage' ]

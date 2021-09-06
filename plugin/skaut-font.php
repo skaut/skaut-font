@@ -4,7 +4,7 @@
  * Plugin Name:       Skautské fonty
  * Plugin URI:        https://github.com/skaut/skaut-font/
  * Description:       Tento plugin přidává na web skautské fonty SKAUT Bold a TheMix
- * Version:           1.2.2
+ * Version:           1.2.3
  * Author:            Junák - český skaut
  * Author URI:        https://github.com/skaut
  * License:           GPL-2.0+
@@ -22,7 +22,7 @@ define( 'SKAUTFONT_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 define( 'SKAUTFONT_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SKAUTFONT_URL', plugin_dir_url( __FILE__ ) );
 define( 'SKAUTFONT_NAME', 'skaut-font' );
-define( 'SKAUTFONT_VERSION', '1.2.2' );
+define( 'SKAUTFONT_VERSION', '1.2.3' );
 
 class Skautfont {
 
@@ -57,9 +57,9 @@ class Skautfont {
 			'themix'    => __( 'TheMix', 'skaut-font' ),
 			'skautbold' => __( 'SKAUT Bold', 'skaut-font' )
 		], [
-			'body'      => __( 'Výchozí', 'skaut-font' ),
-			'titles'    => __( 'Nadpisy', 'skaut-font' ),
-			'site-desc' => __( 'Popis webu', 'skaut-font' )
+			'body'      => __( 'Default', 'skaut-font' ),
+			'titles'    => __( 'Headlines', 'skaut-font' ),
+			'site-desc' => __( 'Web description', 'skaut-font' )
 		] );
 
 		if ( is_admin() ) {
@@ -86,12 +86,12 @@ class Skautfont {
 	public function activation() {
 		if ( ! $this->isCompatibleVersionOfWp() ) {
 			deactivate_plugins( SKAUTFONT_PLUGIN_BASENAME );
-			wp_die( __( 'Plugin skaut-font vyžaduje verzi WordPress 4.9.6 nebo vyšší!', 'skaut-font' ) );
+			wp_die( __( 'The Scout fonts plugin requires WordPress version 4.9.6 or higher!', 'skaut-font' ) );
 		}
 
 		if ( ! $this->isCompatibleVersionOfPhp() ) {
 			deactivate_plugins( SKAUTFONT_PLUGIN_BASENAME );
-			wp_die( __( 'Plugin skaut-font vyžaduje verzi PHP 7.0 nebo vyšší!', 'skaut-font' ) );
+			wp_die( __( 'The Scout fonts plugin requires PHP 7.0 or higher!', 'skaut-font' ) );
 		}
 
 		if ( ! get_option( SKAUTFONT_NAME . '_style_body' ) ) {
@@ -131,7 +131,7 @@ WHERE `option_name` LIKE %s
 
 				deactivate_plugins( SKAUTFONT_PLUGIN_BASENAME );
 
-				Helpers::showAdminNotice( esc_html__( 'Plugin skaut-font vyžaduje verzi WordPress 4.8 nebo vyšší!', 'skaut-font' ), 'warning' );
+				Helpers::showAdminNotice( esc_html__( 'The Scout fonts plugin requires WordPress version 4.9.6 or higher!', 'skaut-font' ), 'warning' );
 
 				if ( isset( $_GET['activate'] ) ) {
 					unset( $_GET['activate'] );
@@ -144,7 +144,7 @@ WHERE `option_name` LIKE %s
 
 				deactivate_plugins( SKAUTFONT_PLUGIN_BASENAME );
 
-				Helpers::showAdminNotice( esc_html__( 'Plugin skaut-font vyžaduje verzi PHP 7.0 nebo vyšší!', 'skaut-font' ), 'warning' );
+				Helpers::showAdminNotice( esc_html__( 'The Scout fonts plugin requires PHP 7.0 or higher!', 'skaut-font' ), 'warning' );
 
 				if ( isset( $_GET['activate'] ) ) {
 					unset( $_GET['activate'] );
