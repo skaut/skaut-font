@@ -1,61 +1,62 @@
-=== Skautské fonty ===
+=== Scout fonts  ===
 Contributors: davidulus, skaut, kalich5
 Tags: skaut, multisite, plugin, font 
 Requires at least: 5.0
 Tested up to: 5.8
 Requires PHP: 7.0
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Implementace skautských písem do WordPress
+Implementation of Scout fonts into WordPress
 
 == Description ==
 
-<h2> Minimální požadavky</h2>
-- WordPress 4.9.6 a vyšší
-- PHP 7.0 a vyšší
+<h2>Minimal requirements</h2>
+- WordPress 4.9.6 and higher
+- PHP 7.0 and higher
 
-Plugin načítá písma z https://cdn.skauting.cz/, kde jsou centrálně aktualizovaná. Plugin obsahuje nastavení, takže si můžete sami vybrat kde se jaké písmo bude zobrazovat. Je dobré se řídit tí že...
-Název webu, nadpisy h1-h6 jsou písmem SKAUT Bold, ostatní text je v TheMix.
+The plugin loads fonts from https://cdn.skauting.cz/, where they are centrally updated. The plugin contains settings, so you can choose where the font will be displayed. It's good to follow that ...
+The name of the website, headings h1-h6 are in the font SKAUT Bold, the rest of the text is in TheMix.
 
-**Jsme na GitHubu**
+**GITBUB**
 [https://github.com/skaut/skaut-font](https://github.com/skaut/skaut-font)
 
 == Installation ==
 
-Instalace je jednoduchá.
-
-1. Vyhledat plugin jako "Skautské fonty"
-2. Nainstalovat a aktivovat
-3. V položce menu "Vzhled" přibude nastavení skautských fontů kde si vše nastavíte
-4. Na webu se budou zobrazovat jen skautské fonty
+1. Search for plugin as "Scout fonts"
+2. Install and activate
+3. In the menu item "Appearance" the settings of scout fonts will be added where you can set everything
+4. Only scout fonts will appear on the web
 
 == Frequently Asked Questions ==
 
-**podpora pluginu**
+**plugin support**
 
-Oficiální podpora je na [http://dobryweb.skauting.cz/](http://dobryweb.skauting.cz/)
+Official support is at [http://dobryweb.skauting.cz/](http://dobryweb.skauting.cz/) (Czech)
 
-**Jsme na GitHubu**
+**GITHUB**
 
 [https://github.com/skaut/skaut-font](https://github.com/skaut/skaut-font)
 
 == Screenshots ==
 
-1. Nastavení pluginu naleznete v záložce Vzhled. Můžete si nastavovat písma pro základní styly. Pokud zakliknete "Neměnit", zůstane font nastavený přímo v šabloně.
+1. You can find the plugin settings in the Appearance tab. You can set fonts for basic styles. If you click "Do not change", the font will remain set directly in the template.
 
 == Changelog ==
 
+= 1.2.3 =
+* Modify default English translations
+
 = 1.2.2 =
-* nejnižší požadovaná verze změněna na 4.9.6
+* The lowest required version changed to 4.9.6
 
 = 1.2.1 =
-* doplnění popisu pluginu
+* Add plugin description
 
 = 1.2 =
-* výchozí nastavení
+* Default settings
 
 = 1.1 =
-* první verze s implementací skautských fontů
-* možnosti nasvení pluginu
+* The first version with the implementation of scout fonts
+* Plugin settings options
