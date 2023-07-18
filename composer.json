@@ -1,5 +1,5 @@
 {
-  "name": "skautfont/WordPress",
+  "name": "skaut/skaut-font",
   "type": "library",
   "description": "skautské fonty ve WordPressu",
   "license": "proprietary",
@@ -17,7 +17,7 @@
     "no-dev": "true"
   },
   "require": {
-    "php": "^7.0"
+    "php": "^7.0 | ^8.0"
   },
   "minimum-stability": "stable",
   "autoload": {
