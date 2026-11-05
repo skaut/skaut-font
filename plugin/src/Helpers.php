@@ -11,7 +11,7 @@ class Helpers {
 			if ( ! $hideNoticeOnPage || $hideNoticeOnPage != get_current_screen()->id ) {
 				$class = 'notice notice-' . $type . ' is-dismissible';
 				printf( '<div class="%1$s"><p>%2$s</p><button type="button" class="notice-dismiss">
-		<span class="screen-reader-text">' . __( 'Close' ) . '</span>
+		<span class="screen-reader-text">' . esc_html__( 'Close' ) . '</span>
 	</button></div>', esc_attr( $class ), $message );
 			}
 		} );
@@ -29,27 +29,6 @@ class Helpers {
 
 	public static function userIsSkautfontManager(): bool {
 		return current_user_can( self::getSkautfontManagerCapability() );
-	}
-
-	public static function getCurrentUrl(): string {
-		return ( isset( $_SERVER['HTTPS'] ) ? "https" : "http" ) . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-	}
-
-	public static function validateNonceFromUrl( string $url, string $nonceName ) {
-		if ( ! wp_verify_nonce( self::getNonceFromUrl( urldecode( $url ), $nonceName ), $nonceName ) ) {
-			wp_nonce_ays( $nonceName );
-		}
-	}
-
-	public static function getNonceFromUrl( string $url, string $nonceName ): string {
-		$result = [];
-		if ( preg_match( "~" . $nonceName . "=([^\&,\s,\/,\#,\%,\?]*)~", $url, $result ) ) {
-			if ( is_array( $result ) && isset( $result[1] ) && $result[1] ) {
-				return $result[1];
-			}
-		}
-
-		return '';
 	}
 
 }

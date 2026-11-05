@@ -4,7 +4,7 @@
  * Plugin Name:       Skautské fonty
  * Plugin URI:        https://github.com/skaut/skaut-font/
  * Description:       Tento plugin přidává na web skautské fonty SKAUT Bold a TheMix
- * Version:           1.2.3
+ * Version:           1.2.4
  * Author:            Junák - český skaut
  * Author URI:        https://github.com/skaut
  * License:           GPL-2.0+
@@ -22,11 +22,13 @@ define( 'SKAUTFONT_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 define( 'SKAUTFONT_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SKAUTFONT_URL', plugin_dir_url( __FILE__ ) );
 define( 'SKAUTFONT_NAME', 'skaut-font' );
-define( 'SKAUTFONT_VERSION', '1.2.3' );
+define( 'SKAUTFONT_VERSION', '1.2.4' );
 
 class Skautfont {
 
 	public function __construct() {
+		require_once SKAUTFONT_PATH . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+
 		$this->initHooks();
 
 		// if incompatible version of WP / PHP or deactivating plugin right now => don´t init
@@ -39,9 +41,8 @@ class Skautfont {
 			return;
 		}
 
-		require SKAUTFONT_PATH . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
-
-		$this->init();
+		// Translations must not be loaded before the "init" action (WordPress 6.7+).
+		add_action( 'init', [ $this, 'init' ] );
 	}
 
 	protected function initHooks() {
@@ -52,7 +53,7 @@ class Skautfont {
 		register_uninstall_hook( __FILE__, [ __CLASS__, 'uninstall' ] );
 	}
 
-	protected function init() {
+	public function init() {
 		$frontend = new Frontend( [
 			'themix'    => __( 'TheMix', 'skaut-font' ),
 			'skautbold' => __( 'SKAUT Bold', 'skaut-font' )
@@ -105,6 +106,8 @@ class Skautfont {
 		if ( ! get_option( SKAUTFONT_NAME . '_style_site-desc' ) ) {
 			add_option( SKAUTFONT_NAME . '_style_site-desc', 'themix' );
 		}
+
+		add_option( SKAUTFONT_NAME . '_activation_redirect', true );
 	}
 
 	public function deactivation() {
@@ -117,7 +120,7 @@ class Skautfont {
 SELECT `option_name`
 FROM $wpdb->options
 WHERE `option_name` LIKE %s
-", SKAUTFONT_NAME . '_%' ) );
+", $wpdb->esc_like( SKAUTFONT_NAME . '_' ) . '%' ) );
 		foreach ( $options as $option ) {
 			delete_option( $option->option_name );
 		}
