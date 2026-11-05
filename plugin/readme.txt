@@ -2,9 +2,9 @@
 Contributors: davidulus, skaut, kalich5
 Tags: skaut, multisite, plugin, font 
 Requires at least: 5.0
-Tested up to: 6.4
+Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -44,6 +44,13 @@ Official support is at [http://dobryweb.skauting.cz/](http://dobryweb.skauting.c
 1. You can find the plugin settings in the Appearance tab. You can set fonts for basic styles. If you click "Do not change", the font will remain set directly in the template.
 
 == Changelog ==
+
+= 1.2.4 =
+* Tested on WordPress 7.1
+* Security hardening: settings are validated against allowed values, output escaping
+* Fix: activating multiple plugins at once no longer stops after this plugin
+* Fix: translations are loaded at the init action (WordPress 6.7+ notice)
+* Remove unused helper functions
 
 = 1.2.3 =
 * Modify default English translations

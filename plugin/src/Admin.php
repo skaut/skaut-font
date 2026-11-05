@@ -21,19 +21,38 @@ final class Admin {
 
 		add_action( 'admin_menu', [ $this, 'setupSettingPage' ], 5 );
 		add_action( 'admin_init', [ $this, 'setupSettingFields' ] );
-		add_action( 'activated_plugin', [ Admin::class, 'redirectToPluginSettingPageAfterActivation' ] );
+		add_action( 'admin_init', [ $this, 'redirectToPluginSettingPageAfterActivation' ] );
 	}
 
-	public static function redirectToPluginSettingPageAfterActivation( string $pluginName ) {
-		if ( $pluginName === SKAUTFONT_NAME . '/' . SKAUTFONT_NAME . '.php' ) {
-			wp_safe_redirect( admin_url( 'themes.php?page=' . SKAUTFONT_NAME ), 302 );
-			exit;
+	public function redirectToPluginSettingPageAfterActivation() {
+		if ( ! get_option( SKAUTFONT_NAME . '_activation_redirect' ) ) {
+			return;
 		}
+
+		delete_option( SKAUTFONT_NAME . '_activation_redirect' );
+
+		// Don't redirect during bulk activation, AJAX requests or in network admin.
+		if ( isset( $_GET['activate-multi'] ) || wp_doing_ajax() || is_network_admin() || ! Helpers::userIsSkautfontManager() ) {
+			return;
+		}
+
+		wp_safe_redirect( admin_url( 'themes.php?page=' . SKAUTFONT_NAME ), 302 );
+		exit;
+	}
+
+	public function sanitizeStyle( $value ): string {
+		$value = is_string( $value ) ? $value : '';
+
+		if ( in_array( $value, array_merge( array_keys( $this->frontend->getFonts() ), [ 'default' ] ), true ) ) {
+			return $value;
+		}
+
+		return 'default';
 	}
 
 	public function addSettingsLinkToPluginsTable( array $links = [] ): array {
 		$mylinks = [
-			'<a href="' . admin_url( 'themes.php?page=' . SKAUTFONT_NAME ) . '">' . __( 'Settings' ) . '</a>',
+			'<a href="' . esc_url( admin_url( 'themes.php?page=' . SKAUTFONT_NAME ) ) . '">' . esc_html__( 'Settings' ) . '</a>',
 		];
 
 		return array_merge( $links, $mylinks );
@@ -52,14 +71,14 @@ final class Admin {
 
 	public function printSettingPage() {
 		if ( ! current_user_can( Helpers::getSkautfontManagerCapability() ) ) {
-			wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.' ) );
 		}
 
 		settings_errors();
 		?>
 		<div class="wrap">
-			<h1><?php _e( 'Nastavení skautských fontů', 'skaut-font' ); ?></h1>
-			<form method="POST" action="<?php echo admin_url( 'options.php' ); ?>">
+			<h1><?php esc_html_e( 'Nastavení skautských fontů', 'skaut-font' ); ?></h1>
+			<form method="POST" action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>">
 				<?php settings_fields( SKAUTFONT_NAME );
 				do_settings_sections( SKAUTFONT_NAME );
 				submit_button();
@@ -105,17 +124,17 @@ final class Admin {
 
 		register_setting( SKAUTFONT_NAME, SKAUTFONT_NAME . '_style_body', [
 			'type'              => 'string',
-			'sanitize_callback' => 'sanitize_text_field'
+			'sanitize_callback' => [ $this, 'sanitizeStyle' ]
 		] );
 
 		register_setting( SKAUTFONT_NAME, SKAUTFONT_NAME . '_style_titles', [
 			'type'              => 'string',
-			'sanitize_callback' => 'sanitize_text_field'
+			'sanitize_callback' => [ $this, 'sanitizeStyle' ]
 		] );
 
 		register_setting( SKAUTFONT_NAME, SKAUTFONT_NAME . '_style_site-desc', [
 			'type'              => 'string',
-			'sanitize_callback' => 'sanitize_text_field'
+			'sanitize_callback' => [ $this, 'sanitizeStyle' ]
 		] );
 	}
 
@@ -124,23 +143,23 @@ final class Admin {
 		?>
 		<div>
 			<label>
-				<input type="radio" name="<?php echo SKAUTFONT_NAME . '_style_body'; ?>"
+				<input type="radio" name="<?php echo esc_attr( SKAUTFONT_NAME . '_style_body' ); ?>"
 				       value="themix"<?php checked( 'themix' === $bodyStyle ); ?> />
-				<span><?php echo $this->frontend->getFonts()['themix']; ?></span>
+				<span><?php echo esc_html( $this->frontend->getFonts()['themix'] ); ?></span>
 			</label>
 		</div>
 		<div>
 			<label>
-				<input type="radio" name="<?php echo SKAUTFONT_NAME . '_style_body'; ?>"
+				<input type="radio" name="<?php echo esc_attr( SKAUTFONT_NAME . '_style_body' ); ?>"
 				       value="skautbold"<?php checked( 'skautbold' === $bodyStyle ); ?> />
-				<span><?php echo $this->frontend->getFonts()['skautbold']; ?></span>
+				<span><?php echo esc_html( $this->frontend->getFonts()['skautbold'] ); ?></span>
 			</label>
 		</div>
 		<div>
 			<label>
-				<input type="radio" name="<?php echo SKAUTFONT_NAME . '_style_body'; ?>"
+				<input type="radio" name="<?php echo esc_attr( SKAUTFONT_NAME . '_style_body' ); ?>"
 				       value="default"<?php checked( 'default' === $bodyStyle ); ?> />
-				<span><?php _e( 'Neměnit', 'skaut-font' ); ?></span>
+				<span><?php esc_html_e( 'Neměnit', 'skaut-font' ); ?></span>
 			</label>
 		</div>
 		<?php
@@ -151,23 +170,23 @@ final class Admin {
 		?>
 		<div>
 			<label>
-				<input type="radio" name="<?php echo SKAUTFONT_NAME . '_style_titles'; ?>"
+				<input type="radio" name="<?php echo esc_attr( SKAUTFONT_NAME . '_style_titles' ); ?>"
 				       value="themix"<?php checked( 'themix' === $bodyStyle ); ?> />
-				<span><?php echo $this->frontend->getFonts()['themix']; ?></span>
+				<span><?php echo esc_html( $this->frontend->getFonts()['themix'] ); ?></span>
 			</label>
 		</div>
 		<div>
 			<label>
-				<input type="radio" name="<?php echo SKAUTFONT_NAME . '_style_titles'; ?>"
+				<input type="radio" name="<?php echo esc_attr( SKAUTFONT_NAME . '_style_titles' ); ?>"
 				       value="skautbold"<?php checked( 'skautbold' === $bodyStyle ); ?> />
-				<span><?php echo $this->frontend->getFonts()['skautbold']; ?></span>
+				<span><?php echo esc_html( $this->frontend->getFonts()['skautbold'] ); ?></span>
 			</label>
 		</div>
 		<div>
 			<label>
-				<input type="radio" name="<?php echo SKAUTFONT_NAME . '_style_titles'; ?>"
+				<input type="radio" name="<?php echo esc_attr( SKAUTFONT_NAME . '_style_titles' ); ?>"
 				       value="default"<?php checked( 'default' === $bodyStyle ); ?> />
-				<span><?php _e( 'Neměnit', 'skaut-font' ); ?></span>
+				<span><?php esc_html_e( 'Neměnit', 'skaut-font' ); ?></span>
 			</label>
 		</div>
 		<?php
@@ -178,23 +197,23 @@ final class Admin {
 		?>
 		<div>
 			<label>
-				<input type="radio" name="<?php echo SKAUTFONT_NAME . '_style_site-desc'; ?>"
+				<input type="radio" name="<?php echo esc_attr( SKAUTFONT_NAME . '_style_site-desc' ); ?>"
 				       value="themix"<?php checked( 'themix' === $bodyStyle ); ?> />
-				<span><?php echo $this->frontend->getFonts()['themix']; ?></span>
+				<span><?php echo esc_html( $this->frontend->getFonts()['themix'] ); ?></span>
 			</label>
 		</div>
 		<div>
 			<label>
-				<input type="radio" name="<?php echo SKAUTFONT_NAME . '_style_site-desc'; ?>"
+				<input type="radio" name="<?php echo esc_attr( SKAUTFONT_NAME . '_style_site-desc' ); ?>"
 				       value="skautbold"<?php checked( 'skautbold' === $bodyStyle ); ?> />
-				<span><?php echo $this->frontend->getFonts()['skautbold']; ?></span>
+				<span><?php echo esc_html( $this->frontend->getFonts()['skautbold'] ); ?></span>
 			</label>
 		</div>
 		<div>
 			<label>
-				<input type="radio" name="<?php echo SKAUTFONT_NAME . '_style_site-desc'; ?>"
+				<input type="radio" name="<?php echo esc_attr( SKAUTFONT_NAME . '_style_site-desc' ); ?>"
 				       value="default"<?php checked( 'default' === $bodyStyle ); ?> />
-				<span><?php _e( 'Neměnit', 'skaut-font' ); ?></span>
+				<span><?php esc_html_e( 'Neměnit', 'skaut-font' ); ?></span>
 			</label>
 		</div>
 		<?php
