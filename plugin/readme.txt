@@ -1,6 +1,6 @@
 === Scout fonts  ===
 Contributors: davidulus, skaut, kalich5
-Tags: skaut, multisite, plugin, font 
+Tags: skaut, multisite, font 
 Requires at least: 5.0
 Tested up to: 7.1
 Requires PHP: 7.0
